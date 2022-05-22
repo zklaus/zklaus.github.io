@@ -99,7 +99,7 @@ myst_enable_extensions = [
 
 # OpenGraph config
 ogp_site_url = "https://zklaus.github.io"
-# ogp_image = "https://zklaus.github.io/_static/profile-bw.png"
+ogp_image = "https://zklaus.github.io/_static/android-chrome-512x512.png"
 
 # Temporarily stored as off until we fix it
 nb_execute_notebooks = "off"
