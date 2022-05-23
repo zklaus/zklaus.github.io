@@ -90,9 +90,12 @@ panels_add_bootstrap_css = False
 
 # MyST config
 myst_enable_extensions = [
-    "deflist",
     "colon_fence",
+    "deflist",
+    "linkify",
 ]
+
+myst_heading_anchors = 3
 
 # Bibliography and citations
 # bibtex_bibfiles = ["_static/works.bib"]
