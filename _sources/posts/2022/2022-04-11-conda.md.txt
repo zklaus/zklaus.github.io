@@ -1,0 +1,128 @@
+---
+date:   2022-04-11
+tags: conda, mamba
+---
+# (Ana)Conda, Mamba—what's what?
+
+Conda is a package manager that started out targeting Python, but has since developed into a far more comprehensive and versatile tool.
+However, in the conda space there are many different things that have similar names and create a lot of confusion.
+In this blog post, I will try to clarify a bit what's what so that you can decide for yourself what is right for you.
+
+We need to talk about four kinds of things: organizations, tools, channels, and distributions.
+
+## Organizations
+There are mainly two organizations that we need to know about.
+
+### [Anaconda Inc.](https://www.anaconda.com/)
+The first is Anaconda Inc., the company that started it all.
+They have been and continue to be an amazing supporter of open source software.
+They are a major contributor not only to the development of the tools and the ecosystem, but also to the infrastructure that enables the volunteer efforts.
+No matter where you land in terms of your practical needs, please do consider buying a license from them if you like to see this kind of support for the community.
+
+### [Conda-forge](https://conda-forge.org/)
+The second organization is conda-forge.
+This is a large volunteer effort that focuses on packaging open source programs and libraries in conda format.
+Beyond the packages themselves, they have done significant developments to support the maintenance and easy use of a complex ecosystem of interdependent libraries—an amazing feat that we will come back to.
+Most work and coordination happens at the [conda-forge github organization](https://github.com/conda-forge), a wealth of information can be found at [the main website](https://conda-forge.org), particularly [its documentation section](https://conda-forge.org/docs).
+Conda-forge relies on Anaconda Inc. for the hosting and distribution of its packages.
+
+## Tools
+### [`conda`](https://docs.conda.io)
+The most important tool is `conda`.
+It is a package manager, that is, a program that downloads and installs packages that contain other programs and libraries.
+These packages are placed into so-called environments that represent isolated collections that allow the use of several different versions and otherwise incompatible sets in separate environments.
+The source of packages for `conda` are typically channels, which are repositories of prepared packages, much like the repositories of Linux distributions.
+
+### [`mamba`](https://mamba.readthedocs.io)
+To a degree, `conda` has become a victim of its own success.
+With the machinery of conda-forge, the number of packages and the complexity of the requested environments has grown so large, that `conda` struggles to resolve the dependencies in a timely manner.
+Furthermore, in certain cases more control over the solution process and better methods for the inquiry of available packages and dependencies were desired.
+To address these needs, `mamba` was written as a drop-in replacement with a focus on speed and the means to deal with more comprehensive questions.
+Today, I recommend to use `mamba` instead of `conda`. It can be installed using `conda` or as part of one of the `mamba` based [](#distributions).
+
+### Other tools
+
+#### [`micromamba`](https://mamba.readthedocs.io/en/latest/user_guide/micromamba.html)
+The name might lead you to think that this is similar to [](#miniconda) or [](#miniforge), but that is not so.
+Instead, it is an even faster version of `mamba`, written completely in C++, but with a reduced functionality.
+Additionally, it is still in its early stages of development, so most people will want to stay away from it for now.
+
+## Channels
+Channels are the repositories for conda packages.
+While there are many different channels and anyone can provide their own channels both locally and on the internet, the two most important channels are `conda-forge` and `defaults`.
+The `conda-forge` channel is the collection of all packages built by the conda-forge, whereas the `defaults` channel contains packages prepared by Anaconda Inc.
+
+Anaconda Inc. also graciously provides hosting for the conda-forge channel, as well as for a number of other projects, and indeed for anyone who registers an account at https://anaconda.org/.
+
+### [conda-forge](https://anaconda.org/conda-forge/)
+Until September 2020, `conda-forge` was reliant on `defaults` for some foundational packages, such as compilers and basic libraries.
+
+Today, `conda-forge` is completely self contained and it is strongly advised to avoid mixing packages from other channels in the same environment.
+The reason for this is mostly ABI compatibility, that is compatibility of the Application Binary Interface, not to be confused with Application Programming Interface, API.
+If you don't know what that means, you don't need to worry about it, but you should take my word for it: Do avoid mixing packages from channels outside of `conda-forge` with those inside of it in the same environment.
+If you find a package that is missing, it is often possible to add it to `conda-forge` with little effort.
+
+I personally rely almost completely on `conda-forge` and highly recommend it.
+
+### [defaults](https://repo.anaconda.com/pkgs/)
+Does that mean that `defaults` is obsolete? No. There are some packages that are particularly complicated or that have special restrictions, either due to technical difficulties, for example in supporting certain GPUs or OEM versions of special hardware, or due to legal restrictions, such as licenses that don't permit simple redistribution or that are not considered Open Source.
+In these cases it is absolutely worth checking the `defaults` channel.
+Note that you may be required to purchase a license in accordance with [Anaconda Inc.'s Terms of Service](https://www.anaconda.com/terms-of-service).
+In general, channels hosted on anaconda.org are free; those on anaconda.com are covered by the license.
+
+## Distributions
+Distributions are downloadable bundles that combine three things, namely a package manager, standard configuration, and pre-selected packages.
+They are the starting point that allows you to interact with the wider conda ecosystem to install packages onto your computer.
+Once as distribution is installed, you can use its package manager to add or remove packages from your computer, you can change the configuration to add or remove channels, or you can even replace the package manager that came with your distribution with a different one.
+In this sense, any distribution can be molded to look a lot like another one.
+
+However, choosing the right distribution for you in the beginning sets you up for the least amount of work down the line.
+
+Let's look at a few of the common distributions.
+
+### Anaconda
+This is the commercial distribution offered by Anaconda Inc.
+Beyond the standard package manager, it contains nice graphical interfaces and a large collection of packages that comes right with the download.
+There is a free version for students, academics, and hobbyists, but the company also offers professional services such as compliance guarantees and support even for on-premises installations in several commercial tiers.
+If any of this sounds interesting to you, do checkout [their website](https://anaconda.com).
+
+### Miniconda
+This is a free, minimal installer for conda, also offered by Anaconda Inc.
+It focuses on providing *only* the conda package manager and not much else.
+In its standard configuration, it will refer to the `defaults` channel as discussed above, but it is easy to configure it to use `conda-forge` instead.
+You can read more about it on [its website](https://docs.conda.io/en/latest/miniconda.html).
+
+### Miniforge
+This is also a free, minimal installer for conda, much like Miniconda.
+The difference is that this is an offering by the open source community and that in its standard configuration it will refer *only* to `conda-forge`.
+You can download it from [its Github page](https://github.com/conda-forge/miniforge).
+Note that there are a few variants available, name `Miniforge3` itself, which is the most common version, and `Miniforge-pypy3` which uses [PyPy](https://www.pypy.org/) as its Python implementation.
+If you don't have a preference for PyPy, I recommend to stick with the regular version.
+
+There are also two variants called Mambaforge, which we will address next.
+
+### Mambaforge
+Mambaforge is a free, minimal installer much like Miniforge and Miniconda.
+The difference to Miniforge is that in its standard configuration it already comes with mamba, the fast drop-in replacement for the conda package manager that we discuss in [Tools](#tools).
+Don't worry though, it also contains conda itself, in case you need some of the functionality that is not yet provided by mamba.
+Just like Miniforge, it will normally refer to only the `conda-forge` channel, and it also has a PyPy version available.
+As before, I recommend sticking to the regular version.
+
+Mambaforge is available from [the Miniforge Github page](https://github.com/conda-forge/miniforge).
+
+### What distribution to choose?
+If you are very new to the world of conda, if you need a graphical user interface, or professional guarantees and support, give [Anaconda](#anaconda) a try.
+Otherwise, I think [Mambaforge](#mambaforge) is a good starting point.
+
+## Conclusion
+The Conda ecosystem is an amazing help for the distribution of Python and non-Python packages that are installable at the user-level, i.e. without requiring super user or admin privileges, and allow the creation and maintenance of parallel environments with different versions of the same software.
+
+The conda-forge channel offers a wide variety of mostly scientific and numerically focused packages that integrate interpreted languages like Python with compiled code in an ABI compatible way, facilitating the combination of many different packages in comprehensive dependency graphs, thus promoting re-use and collaboration.
+
+With [](#mamba), we have a sufficiently fast implementation of the conda package manager and [](#mambaforge) offers a simple and fast way to get your environment up-and-running in no time.
+
+What's your opinion?
+
+Did you have a good or bad experience with conda or mamba?
+
+Did I miss an important tool?
