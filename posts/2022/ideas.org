@@ -1,3 +1,5 @@
 * chunking
 * numpy dispatch
 * data request
+* good PRs/git for fun and profit
+* cell measures/fx files
