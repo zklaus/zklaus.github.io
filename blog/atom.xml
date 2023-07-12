@@ -1,21 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<feed xmlns="http://www.w3.org/2005/Atom">
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
   <id>https://zklaus.github.io</id>
   <title>Technical Details</title>
-  <updated>2022-05-23T13:32:22.353958+00:00</updated>
+  <updated>2023-07-12T12:17:58.562601+00:00</updated>
   <link href="https://zklaus.github.io"/>
   <link href="https://zklaus.github.io/blog/atom.xml" rel="self"/>
-  <generator uri="https://ablog.readthedocs.org/" version="0.10.25">ABlog</generator>
+  <generator uri="https://ablog.readthedocs.io/" version="0.11.4.post1">ABlog</generator>
   <entry>
     <id>https://zklaus.github.io/posts/2022/2022-05-23-conda/</id>
     <title>(Ana)Conda, Mamba—what’s what?</title>
     <updated>2022-05-23T00:00:00+00:00</updated>
-    <content type="html">&lt;div class="ablog-post-excerpt docutils container"&gt;
-&lt;p&gt;Conda is a package manager that started out targeting Python, but has since developed into a far more comprehensive and versatile tool.
+    <content type="html">&lt;p class="ablog-post-excerpt"&gt;&lt;p&gt;Conda is a package manager that started out targeting Python, but has since developed into a far more comprehensive and versatile tool.
 However, in the conda space there are many different things that have similar names and create a lot of confusion.
 In this blog post, I will try to clarify a bit what’s what so that you can decide for yourself what is right for you.&lt;/p&gt;
 &lt;p&gt;We need to talk about four kinds of things: organizations, tools, channels, and distributions.&lt;/p&gt;
-&lt;/div&gt;
+&lt;/p&gt;
 </content>
     <link href="https://zklaus.github.io/posts/2022/2022-05-23-conda/" rel="alternate"/>
     <summary>Conda is a package manager that started out targeting Python, but has since developed into a far more comprehensive and versatile tool.
