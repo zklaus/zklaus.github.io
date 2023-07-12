@@ -17,9 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Technical Details'
-copyright = '2022, Klaus Zimmermann'
-author = 'Klaus Zimmermann'
+project = "Technical Details"
+copyright = "2022, Klaus Zimmermann"
+author = "Klaus Zimmermann"
 
 
 # -- General configuration ---------------------------------------------------
@@ -28,7 +28,8 @@ author = 'Klaus Zimmermann'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "myst_nb",
+    "myst_parser",
+    # "myst_nb",
     "ablog",
     "sphinx_panels",
     # "sphinxcontrib.bibtex",
@@ -37,13 +38,13 @@ extensions = [
 ]
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = ["_templates"]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
-    '_build',
+    "_build",
     ".nox/*",
     "README.md",
 ]
@@ -54,12 +55,12 @@ exclude_patterns = [
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'pydata_sphinx_theme'
+html_theme = "pydata_sphinx_theme"
 
 html_theme_options = {
-  "github_url": "https://github.com/zklaus/",
-  "search_bar_text": "Search this site...",
-  "navbar_end": ["search-field.html", "navbar-icon-links"],
+    "github_url": "https://github.com/zklaus/",
+    "search_bar_text": "Search this site...",
+    "navbar_end": ["search-field.html", "navbar-icon-links"],
 }
 
 html_favicon = "_static/favicon.ico"
@@ -67,14 +68,18 @@ html_favicon = "_static/favicon.ico"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ["_static"]
 # html_extra_path = ["feed.xml"]
 html_sidebars = {
     "index": ["hello.html"],
     "about": ["hello.html"],
-    "posts/**": ['postcard.html', 'recentposts.html', 'archives.html'],
-    "blog": ['tagcloud.html', 'archives.html'],
-    "blog/**": ['postcard.html', 'recentposts.html', 'archives.html']
+    "posts/**": [
+        "ablog/postcard.html",
+        "ablog/recentposts.html",
+        "ablog/archives.html",
+    ],
+    "blog": ["ablog/tagcloud.html", "ablog/archives.html"],
+    "blog/**": ["ablog/postcard.html", "ablog/recentposts.html", "ablog/archives.html"],
 }
 blog_baseurl = "https://zklaus.github.io"
 blog_title = "Technical Details"
@@ -97,6 +102,8 @@ myst_enable_extensions = [
 
 myst_heading_anchors = 3
 
+numfig = True
+
 # Bibliography and citations
 # bibtex_bibfiles = ["_static/works.bib"]
 
@@ -107,8 +114,7 @@ ogp_image = "https://zklaus.github.io/_static/android-chrome-512x512.png"
 # Temporarily stored as off until we fix it
 nb_execute_notebooks = "off"
 
-rediraffe_redirects = {
-}
+rediraffe_redirects = {}
 
 
 def setup(app):

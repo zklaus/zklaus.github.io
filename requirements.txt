@@ -1,8 +1,8 @@
 ablog
-docutils==0.16
+docutils
 linkify-it-py
-myst_nb
-MyST-Parser
+# myst-nb
+myst-parser>=2.0.0
 pydata-sphinx-theme
 sphinx
 sphinx-panels
